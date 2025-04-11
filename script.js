@@ -24,8 +24,8 @@ class Ball {
         this.y = y;
         this.radius = radius;
         this.color = color;
-        this.dx = (Math.random() - 0.5) * 8; // Random horizontal velocity
-        this.dy = (Math.random() - 0.5) * 8; // Random vertical velocity
+        this.dx = (Math.random() - 0.5) * 16; // Doubled from 8 to 16
+        this.dy = (Math.random() - 0.5) * 16; // Doubled from 8 to 16
         this.originalRadius = radius;
         this.flashCount = 0;
         this.collisionCount = 0;
@@ -131,7 +131,7 @@ const balls = [
     new Ball(200, 200, 20, 'blue'),
     new Ball(300, 300, 20, 'green'),
     new Ball(400, 400, 20, 'orange'),
-    new Ball(500, 500, 20, 'white')
+    new Ball(500, 500, 20, 'purple')
 ];
 
 // Draw game over message
@@ -160,8 +160,8 @@ function resetGame() {
         ball.x = Math.random() * (canvas.width - 40) + 20;
         ball.y = Math.random() * (canvas.height - 40) + 20;
         ball.radius = 20;
-        ball.dx = (Math.random() - 0.5) * 8;
-        ball.dy = (Math.random() - 0.5) * 8;
+        ball.dx = (Math.random() - 0.5) * 16; // Doubled from 8 to 16
+        ball.dy = (Math.random() - 0.5) * 16; // Doubled from 8 to 16
         ball.collisionCount = 0;
     });
     

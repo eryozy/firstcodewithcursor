@@ -3,70 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bouncing Balls Animation</title>
+    <title>Welcome to Ball Collision Game</title>
     <style>
         body {
             margin: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #000;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
         }
         .container {
-            display: flex;
-            align-items: center;
+            text-align: center;
+            position: relative;
         }
-        canvas {
-            border: 2px solid #333;
-            background-color: #000;
+        .pacman {
+            width: 300px;
+            height: 300px;
+            margin-bottom: 30px;
+            animation: glow 2s ease-in-out infinite alternate;
         }
-        .controls {
-            margin-left: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 5px #FFD700);
+            }
+            to {
+                filter: drop-shadow(0 0 20px #FFD700);
+            }
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
+        .start-button {
+            padding: 15px 40px;
+            font-size: 24px;
+            background-color: #FFD700;
+            color: #000;
             border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
         }
-        button:hover {
-            background-color: #45a049;
+        .start-button:hover {
+            transform: scale(1.1);
+            background-color: #FFF;
+            box-shadow: 0 0 20px #FFD700;
         }
-        button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
+        .dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
         }
-        #pauseBtn {
-            background-color: #2196F3;
+        .dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #FFD700;
+            border-radius: 50%;
+            animation: float 3s infinite ease-in-out;
         }
-        #pauseBtn:hover {
-            background-color: #0b7dda;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
-        #stopBtn {
-            background-color: #f44336;
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
         }
-        #stopBtn:hover {
-            background-color: #d32f2f;
+        h1 {
+            color: #FFD700;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #FFD700;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <canvas id="canvas"></canvas>
-        <div class="controls">
-            <button id="startBtn">Start</button>
-            <button id="pauseBtn">Pause</button>
-            <button id="stopBtn">Stop</button>
+        <h1>Ball Collision Game</h1>
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIj48cGF0aCBmaWxsPSIjRkZENzAwIiBkPSJNMTIwIDIwYzU1LjIgMCAxMDAgNDQuOCAxMDAgMTAwcy00NC44IDEwMC0xMDAgMTAwUzIwIDE3NS4yIDIwIDEyMCA3NC44IDIwIDEyMCAyMHptMCA4MmwzNS00MWgtNzB6Ii8+PC9zdmc+" alt="Pac-Man" class="pacman">
+        <a href="game.html" class="start-button">Start Game</a>
+        <div class="dots">
+            <!-- Decorative dots will be added by JavaScript -->
         </div>
     </div>
-    <script src="script.js"></script>
+    <footer>
+        All rights reserved. Created by eryozy © 2025
+    </footer>
+    <script>
+        // Add floating dots
+        const dotsContainer = document.querySelector('.dots');
+        for (let i = 0; i < 20; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.top = Math.random() * 100 + '%';
+            dot.style.animationDelay = Math.random() * 2 + 's';
+            dotsContainer.appendChild(dot);
+        }
+    </script>
 </body>
 </html> 
